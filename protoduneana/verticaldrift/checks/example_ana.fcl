@@ -1,0 +1,29 @@
+# File: example_ana.fcl
+
+process_name: ExampleAnaProcess
+
+services:
+{
+  TFileService: { fileName: "example_ana_output.root" }
+}
+
+physics:
+{
+  analyzers: {
+    exampleana: {
+      module_type: "ExampleAna"
+      MCTruthTag: "generator"
+      MCParticleTag: "largeant"
+      TrackTag: "pandoraTrack"
+      PFParticleTag: "pandora"
+    }
+  }
+
+  # Define a path called "ana" that runs the exampleana module
+  ana: [exampleana]
+
+  # Place that path on the end_path list
+  trigger_paths: []
+  end_paths: [ana]
+}
+

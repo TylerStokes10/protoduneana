@@ -145,8 +145,8 @@ private:
   float fgeoZmax =-1e6;
 
   // detector geometry
-  const geo::Geometry* fGeom;
-  const geo::WireReadoutGeom* fWireReadoutGeom;
+const   geo::Geometry* fGeom;
+  const  geo::WireReadoutGeom* fWireReadoutGeom;
 
   void checkTrackCharacs( float Dx, float Dy, float Dz, vector<float> &track_char );
   void DrawRectangle(TPolyLine *Rectangle, float a_1, float a_2, float b_1, float b_2);
@@ -280,14 +280,14 @@ void pdvdana::CheckHitsAndTracks::analyze(art::Event const& ev)
         }
         try{
           g_wireID_s = fWireReadoutGeom->NearestWireID(track.Start(), geo::PlaneID(0, tpc_s.TPC, id_pl));
-        }
+             }
         catch(geo::InvalidWireError const& e_1) {
           g_wireID_s = e_1.suggestedWireID(); // pick the closest valid wire
         }
         //Looking for the wire associated with the end of the track
         try{
-          g_wireID_e = fWireReadoutGeom->NearestWireID(track.End(), geo::PlaneID(0, tpc_e.TPC, id_pl));
-        }
+         g_wireID_e = fWireReadoutGeom->NearestWireID(track.End(), geo::PlaneID(0, tpc_e.TPC, id_pl));
+                    }
         catch(geo::InvalidWireError const& e_2) {
           g_wireID_e = e_2.suggestedWireID(); // pick the closest valid wire
         }
